@@ -24,6 +24,8 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        //Prima entries
         Author auth1 = new Author("Marco", "Lanfranchi");
         Book book1 = new Book("Programmare", "12345");
         auth1.getBooks().add(book1);
@@ -31,6 +33,7 @@ public class BootStrapData implements CommandLineRunner {
         authorRepository.save(auth1);
         bookRepository.save(book1);
 
+        //Seconda entries
         Author auth2 = new Author("Roberto", "Gazia");
         Book book2 = new Book("ProgrammareBene", "67890");
         auth2.getBooks().add(book2);
@@ -40,10 +43,16 @@ public class BootStrapData implements CommandLineRunner {
 
         Publisher pub1 = new Publisher("Editore1", "Via Milano, 4", "Lecco", "Italia", "23900");
         publisherRpository.save(pub1);
+        book1.setPublisher(pub1);
+        pub1.getBooks().add(book1);
+        book2.setPublisher(pub1);
+        pub1.getBooks().add(book2);
+        publisherRpository.save(pub1);
+
 
         System.out.println("Started in BootStrap");
         System.out.println("Numero di libri: "+bookRepository.count());
-        System.out.println("Numero di publisher: "+publisherRpository.count());
+        System.out.println("Numero di libri per publisher: "+pub1.getBooks().size());
 
     }
 }
