@@ -16,7 +16,7 @@ public class Author {
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
-    public Author(){} //jpa richiede un costruttore con zero argomenti
+    public Author(){} //jpa richiede un costruttore vuoto
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
